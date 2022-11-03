@@ -23,3 +23,20 @@ print('Задача 6. Маятник ')
 # Введите амплитуду остановки: 0.1
  
 # Маятник считается остановившимся через 27 колебаний
+
+
+def fluctuations_count(amp, stop_amp):
+    count = 0
+    while amp >= stop_amp:
+        amp = amp - (amp * 0.084)
+        count += 1
+
+    return count
+
+
+amplitude = float(input("Введите начальную амплитуду: "))
+stopAmp = float(input("Введите амплитуду остановки: "))
+
+fluctCount = fluctuations_count(amplitude, stopAmp)
+
+print(f"Маятник считается остановившимся через {fluctCount} колебаний.")
