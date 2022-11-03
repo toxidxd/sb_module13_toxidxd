@@ -13,46 +13,50 @@ print('Задача 5. Недоделка 2')
 # а затем выводится их сумма.
 #
 #
-# И тут вы натыкаетесь на программу,
-# которая была написана прошлым программистом и которая как раз решает такую задачу!
+# И тут Вы натыкаетесь на программу,
+# написанную прошлым программистом, которая как раз решает такую задачу!
 # Однако старший программист сказал вам немного переписать этот код,
 # чтобы он не выглядел так ужасно.
-# Да и вам самим становится, мягко говоря, не по себе от него.
+# Да и Вам самому становится, мягко говоря, не по себе от него.
 #
 # Разбейте приведённую ниже программу на функции.
 # Повторений кода должно быть как можно меньше.
 # Также сделайте,
 # чтобы в основной части программы был только ввод чисел, затем изменённые числа и вывод их суммы.
 
-first_n = int(input("Введите первое число: "))
-first_num_count = 0
-temp = first_n
 
-while temp > 0:
-    first_num_count += 1
-    temp = temp // 10
+def num_count(num):
+    count = 0
+    while num > 0:
+        count += 1
+        num = num // 10
+
+    return count
+
+
+def digit_flip(num, cnt):
+    last_digit = num % 10
+    first_digit = num // 10 ** (cnt - 1)
+    between_digits = num % 10 ** (cnt - 1) // 10
+    result = last_digit * 10 ** (cnt - 1) + between_digits * 10 + first_digit
+
+    return result
+
+
+first_n = int(input("Введите первое число: "))
+second_n = int(input("\nВведите второе число: "))
+
+first_num_count = num_count(first_n)
+second_num_count = num_count(second_n)
 
 if first_num_count < 3:
     print("В первом числе меньше трёх цифр.")
+elif second_num_count < 4:
+    print("Во втором числе меньше четырёх цифр.")
 else:
-    last_digit = first_n % 10
-    first_digit = first_n // 10 ** (first_num_count - 1)
-    between_digits = first_n % 10 ** (first_num_count - 1) // 10
-    first_n = last_digit * 10 ** (first_num_count - 1) + between_digits * 10 + first_digit
+    first_n = digit_flip(first_n, first_num_count)
+    second_n = digit_flip(second_n, second_num_count)
+
     print('Изменённое первое число:', first_n)
-    second_n = int(input("\nВведите второе число: "))
-    second_num_count = 0
-    temp = second_n
-    
-    while temp > 0:
-        second_num_count += 1
-        temp = temp // 10
-    if second_num_count < 4:
-        print("Во втором числе меньше четырёх цифр.")
-    else:
-        last_digit = second_n % 10
-        first_digit = second_n // 10 ** (second_num_count - 1)
-        between_digits = second_n % 10 ** (second_num_count - 1) // 10
-        second_n = last_digit * 10 ** (second_num_count - 1) + between_digits * 10 + first_digit
-        print('Изменённое второе число:', second_n)
-        print('\nСумма чисел:', first_n + second_n)
+    print('Изменённое второе число:', second_n)
+    print('\nСумма чисел:', first_n + second_n)
