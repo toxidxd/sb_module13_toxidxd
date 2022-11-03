@@ -22,3 +22,17 @@ print('Задача 1. Урок информатики 2')
 # 
 # Введите число: 0.0012
 # Формат плавающей точки: x = 1.2 * 10 ** -3
+
+number = float(input("Введите число: "))
+b = 0
+if number <= 1:
+    while number <= 1:
+        number *= 10
+        b -= 1
+        print(number, b)
+elif number >= 10:
+    while number >= 10:
+        number /= 10
+        b += 1
+
+print("Формат плавающей точки: x = ", number, "* 10 ** " + str(b))
