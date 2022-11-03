@@ -38,9 +38,7 @@ def digit_flip(num, cnt):
     last_digit = num % 10
     first_digit = num // 10 ** (cnt - 1)
     between_digits = num % 10 ** (cnt - 1) // 10
-    result = last_digit * 10 ** (cnt - 1) + between_digits * 10 + first_digit
-
-    return result
+    return last_digit * 10 ** (cnt - 1) + between_digits * 10 + first_digit
 
 
 first_n = int(input("Введите первое число: "))
